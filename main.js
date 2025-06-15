@@ -10,14 +10,16 @@ function showDateTime(){
 
 const tableBody = document.getElementsByTagName('tbody')[0];
 let savedStates = JSON.parse(localStorage.getItem('checkboxStates')) || {};
-
 let startDate;
 const storedStartDate = localStorage.getItem("startDate");
 
 if (storedStartDate) {
   startDate = new Date(storedStartDate);
+  startDate.setHours(0, 0, 0, 0); // تصفير الساعة
 } else {
-  startDate = new Date(); 
+  // هنا نحط التاريخ اللي انت عايزه يبدأ منه
+  startDate = new Date(2025, 5, 14); // يونيو = 5 (لأن الشهور تبدأ من 0)
+  startDate.setHours(0, 0, 0, 0); // تصفير الساعة
   localStorage.setItem("startDate", startDate.toISOString());
 }
 
